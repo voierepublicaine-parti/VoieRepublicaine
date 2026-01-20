@@ -27,23 +27,23 @@ body{
   transition:opacity .4s ease, transform .4s ease;
 }
 
-.fade-out{
+body.fade-out{
   opacity:0;
-  transform:translateY(-10px);
+  transform:translateY(-8px);
 }
 
-/* NAV */
+/* ================= NAVBAR ================= */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  background:transparent;
   padding:16px 32px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  background:transparent;
   z-index:1000;
-  transition:.4s;
+  transition:.4s ease;
 }
 
 nav.scrolled{
@@ -67,16 +67,41 @@ nav ul{
 }
 
 nav ul li a{
+  position:relative;
   text-decoration:none;
   color:white;
   font-weight:600;
   font-size:14px;
+  transition:.25s ease;
+}
+
+/* soulignement tricolore */
+nav ul li a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,#0055a4,#ffffff,#ef4135);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.3s ease;
+}
+
+nav ul li a:hover::after{
+  transform:scaleX(1);
+}
+
+nav ul li a:active{
+  transform:scale(0.95);
 }
 
 nav.scrolled ul li a{
   color:var(--blue);
 }
 
+/* tricolore bas */
 .tricolor{
   position:absolute;
   bottom:0;
@@ -90,11 +115,11 @@ nav.scrolled ul li a{
 .white{background:#fff;}
 .red{background:#ef4135;}
 
-/* HERO */
+/* ================= HERO ================= */
 header{
   min-height:100vh;
   background:
-    linear-gradient(120deg, rgba(11,28,45,.85), rgba(193,18,31,.75)),
+    linear-gradient(120deg, rgba(11,28,45,.88), rgba(193,18,31,.78)),
     url("https://images.unsplash.com/photo-1505842465776-3a8e9a3c8b01") center/cover no-repeat;
   display:flex;
   align-items:center;
@@ -113,48 +138,45 @@ header{
 
 .hero p{
   font-size:20px;
-  margin-bottom:32px;
+  margin-bottom:36px;
   max-width:750px;
 }
 
 .hero-buttons{
   display:flex;
-  gap:16px;
+  gap:18px;
   flex-wrap:wrap;
 }
 
-.hero-buttons button{
-  padding:14px 34px;
+/* ================= BOUTONS ================= */
+.btn-primary,
+.btn-outline{
+  position:relative;
+  padding:14px 36px;
   font-size:14px;
   font-weight:700;
-  letter-spacing:1px;
+  letter-spacing:1.2px;
   border-radius:4px;
-  border:none;
   cursor:pointer;
-  transition:.3s;
+  text-decoration:none;
+  overflow:hidden;
+  transition:.3s ease;
 }
 
+/* primaire */
 .btn-primary{
   background:linear-gradient(90deg,#0055a4,#ef4135);
   color:white;
 }
 
+/* outline */
 .btn-outline{
-  .btn-outline{
-  position:relative;
-  padding:14px 36px;
   border:2px solid rgba(255,255,255,.9);
   color:white;
   background:rgba(255,255,255,.08);
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:1.2px;
-  border-radius:4px;
-  overflow:hidden;
-  transition:.35s ease;
 }
 
-/* effet ligne tricolore subtile */
+/* ligne tricolore */
 .btn-outline::before{
   content:"";
   position:absolute;
@@ -172,17 +194,20 @@ header{
   transform:scaleX(1);
 }
 
+/* hover */
+.btn-primary:hover,
 .btn-outline:hover{
-  background:rgba(255,255,255,.18);
   transform:translateY(-2px);
   box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-.hero-buttons button:hover{
-  transform:translateY(-2px);
+/* clic */
+.btn-primary:active,
+.btn-outline:active{
+  transform:scale(0.96);
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:900px){
   nav ul{display:none;}
   .hero h1{font-size:36px;}
@@ -193,14 +218,14 @@ header{
 <body>
 
 <nav id="navbar">
-  <div class="logo" onclick="goTo('index.html')">
+  <a class="logo" href="index.html">
     <img src="logo-vr.png" alt="Voie Républicaine">
-  </div>
+  </a>
 
   <ul>
-    <li><a href="#accueil">Accueil</a></li>
-    <li><a onclick="goTo('programme.html')">Programme</a></li>
-    <li><a onclick="goTo('adherer.html')">Adhérer</a></li>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="programme.html">Programme</a></li>
+    <li><a href="adherer.html">Adhérer</a></li>
   </ul>
 
   <div class="tricolor">
@@ -208,17 +233,18 @@ header{
   </div>
 </nav>
 
-<header id="accueil">
+<header>
   <div class="hero">
     <h1>Une nouvelle République, pour une nouvelle France.</h1>
     <p>
-      Voie Républicaine porte un projet clair :  
-      restaurer l’ordre, la justice et la souveraineté, sans haine ni division.
+      Voie Républicaine porte un projet clair :
+      restaurer l’ordre, la justice et la souveraineté,
+      sans haine ni division.
     </p>
 
     <div class="hero-buttons">
-      <button class="btn-primary" onclick="goTo('adherer.html')">J’ADHÈRE</button>
-      <button class="btn-outline" onclick="goTo('programme.html')">PROGRAMME</button>
+      <a href="adherer.html" class="btn-primary">J’ADHÈRE</a>
+      <a href="programme.html" class="btn-outline">PROGRAMME</a>
     </div>
   </div>
 </header>
@@ -227,25 +253,23 @@ header{
 let lastScroll = 0;
 const nav = document.getElementById("navbar");
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
   const current = window.pageYOffset;
+
   if(current > lastScroll && current > 100){
     nav.classList.add("hidden");
-  } else {
+  }else{
     nav.classList.remove("hidden");
   }
+
   if(current > 50){
     nav.classList.add("scrolled");
-  } else {
+  }else{
     nav.classList.remove("scrolled");
   }
+
   lastScroll = current;
 });
-
-function goTo(url){
-  document.body.classList.add("fade-out");
-  setTimeout(()=>window.location.href=url,400);
-}
 </script>
 
 </body>
