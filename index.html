@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Voie Républicaine – Mouvement politique</title>
+<title>Voie Républicaine</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -22,22 +22,28 @@
 }
 
 body{
-  background:white;
+  background:var(--white);
   color:var(--blue);
+  transition:opacity .4s ease, transform .4s ease;
 }
 
-/* ===== NAV ===== */
+.fade-out{
+  opacity:0;
+  transform:translateY(-10px);
+}
+
+/* NAV */
 nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:16px 32px 12px;
+  background:transparent;
+  padding:16px 32px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:transparent;
   z-index:1000;
-  transition:.4s ease;
+  transition:.4s;
 }
 
 nav.scrolled{
@@ -50,7 +56,7 @@ nav.hidden{
 }
 
 .logo img{
-  height:80px;
+  height:75px;
   cursor:pointer;
 }
 
@@ -61,8 +67,8 @@ nav ul{
 }
 
 nav ul li a{
-  color:white;
   text-decoration:none;
+  color:white;
   font-weight:600;
   font-size:14px;
 }
@@ -71,7 +77,6 @@ nav.scrolled ul li a{
   color:var(--blue);
 }
 
-/* TRICOLORE */
 .tricolor{
   position:absolute;
   bottom:0;
@@ -82,19 +87,19 @@ nav.scrolled ul li a{
 }
 .tricolor span{flex:1;}
 .blue{background:#0055a4;}
-.white{background:#ffffff;}
+.white{background:#fff;}
 .red{background:#ef4135;}
 
-/* ===== HERO ===== */
+/* HERO */
 header{
   min-height:100vh;
   background:
-    linear-gradient(120deg, rgba(11,28,45,.9), rgba(193,18,31,.8)),
+    linear-gradient(120deg, rgba(11,28,45,.85), rgba(193,18,31,.75)),
     url("https://images.unsplash.com/photo-1505842465776-3a8e9a3c8b01") center/cover no-repeat;
-  color:white;
   display:flex;
   align-items:center;
   padding:0 32px;
+  color:white;
 }
 
 .hero{
@@ -102,58 +107,46 @@ header{
 }
 
 .hero h1{
-  font-size:54px;
-  margin-bottom:20px;
+  font-size:52px;
+  margin-bottom:18px;
 }
 
 .hero p{
   font-size:20px;
-  max-width:720px;
-  margin-bottom:30px;
+  margin-bottom:32px;
+  max-width:750px;
 }
 
-.hero-form{
+.hero-buttons{
   display:flex;
-  gap:12px;
+  gap:16px;
   flex-wrap:wrap;
 }
 
-.hero-form input{
-  padding:14px 18px;
+.hero-buttons button{
+  padding:14px 34px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:1px;
+  border-radius:4px;
   border:none;
-  min-width:260px;
-  font-size:15px;
+  cursor:pointer;
+  transition:.3s;
 }
 
-.hero-form button{
-  padding:14px 30px;
+.btn-primary{
   background:linear-gradient(90deg,#0055a4,#ef4135);
   color:white;
-  border:none;
-  font-weight:700;
-  cursor:pointer;
 }
 
-.hero-form a{
-  padding:14px 30px;
+.btn-outline{
+  background:transparent;
   border:2px solid white;
   color:white;
-  text-decoration:none;
-  font-weight:700;
 }
 
-/* SECTIONS */
-section{
-  padding:120px 32px;
-  max-width:1100px;
-  margin:auto;
-}
-
-footer{
-  background:#f4f4f4;
-  padding:40px;
-  text-align:center;
-  font-size:13px;
+.hero-buttons button:hover{
+  transform:translateY(-2px);
 }
 
 /* MOBILE */
@@ -167,14 +160,14 @@ footer{
 <body>
 
 <nav id="navbar">
-  <a class="logo" href="index.html">
+  <div class="logo" onclick="goTo('index.html')">
     <img src="logo-vr.png" alt="Voie Républicaine">
-  </a>
+  </div>
 
   <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="programme.html">Programme</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a onclick="goTo('programme.html')">Programme</a></li>
+    <li><a onclick="goTo('adherer.html')">Adhérer</a></li>
   </ul>
 
   <div class="tricolor">
@@ -182,49 +175,44 @@ footer{
   </div>
 </nav>
 
-<header>
+<header id="accueil">
   <div class="hero">
-    <h1>Ensemble, remettons la République en ordre.</h1>
+    <h1>Autorité républicaine. Unité nationale.</h1>
     <p>
-      Ordre, justice, travail et unité nationale.
-      Une France qui protège, rassemble et prépare l’avenir.
+      Voie Républicaine porte un projet clair :  
+      restaurer l’ordre, la justice et la souveraineté, sans haine ni division.
     </p>
 
-    <div class="hero-form">
-      <input type="email" placeholder="Votre email" required>
-      <button onclick="location.href='adherer.html'">J’ADHÈRE</button>
-      <a href="programme.html">LE PROGRAMME</a>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="goTo('adherer.html')">J’ADHÈRE</button>
+      <button class="btn-outline" onclick="goTo('programme.html')">PROGRAMME</button>
     </div>
   </div>
 </header>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Contact officiel du mouvement Voie Républicaine.</p>
-</section>
-
-<footer>
-  © 2026 — Voie Républicaine
-</footer>
 
 <script>
 let lastScroll = 0;
 const nav = document.getElementById("navbar");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
   const current = window.pageYOffset;
   if(current > lastScroll && current > 100){
     nav.classList.add("hidden");
-  }else{
+  } else {
     nav.classList.remove("hidden");
   }
   if(current > 50){
     nav.classList.add("scrolled");
-  }else{
+  } else {
     nav.classList.remove("scrolled");
   }
   lastScroll = current;
 });
+
+function goTo(url){
+  document.body.classList.add("fade-out");
+  setTimeout(()=>window.location.href=url,400);
+}
 </script>
 
 </body>
