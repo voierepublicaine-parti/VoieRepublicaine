@@ -12,6 +12,7 @@
   --blue:#0b1c2d;
   --red:#c1121f;
   --white:#ffffff;
+  --gray:#f5f5f5;
 }
 
 *{
@@ -22,11 +23,11 @@
 }
 
 body{
-  background:white;
+  background:var(--white);
   color:var(--blue);
 }
 
-/* NAV (IDENTIQUE ACCUEIL) */
+/* ================= NAV ================= */
 nav{
   position:fixed;
   top:0;
@@ -41,7 +42,7 @@ nav{
 }
 
 nav.scrolled{
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.96);
   backdrop-filter:blur(6px);
 }
 
@@ -61,8 +62,8 @@ nav ul{
 }
 
 nav ul li a{
-  color:white;
   text-decoration:none;
+  color:white;
   font-weight:600;
   font-size:14px;
 }
@@ -85,9 +86,9 @@ nav.scrolled ul li a{
 .white{background:#ffffff;}
 .red{background:#ef4135;}
 
-/* HERO PROGRAMME */
+/* ================= HERO ================= */
 header{
-  min-height:60vh;
+  min-height:65vh;
   background:
     linear-gradient(120deg, rgba(11,28,45,.9), rgba(193,18,31,.8)),
     url("https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba") center/cover no-repeat;
@@ -102,65 +103,97 @@ header{
 }
 
 .hero h1{
-  font-size:48px;
-  margin-bottom:16px;
+  font-size:50px;
+  margin-bottom:18px;
 }
 
 .hero p{
   font-size:20px;
-  max-width:720px;
+  max-width:760px;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 section{
-  padding:100px 32px;
-  max-width:1100px;
+  padding:110px 32px;
+}
+
+.container{
+  max-width:1150px;
   margin:auto;
 }
 
 .section-title{
-  font-size:36px;
-  margin-bottom:40px;
+  font-size:38px;
+  margin-bottom:14px;
 }
 
-/* BLOCS PROGRAMME */
-.blocks{
+.section-subtitle{
+  font-size:16px;
+  color:#444;
+  margin-bottom:50px;
+  max-width:850px;
+}
+
+/* ================= PROGRAM BLOCKS ================= */
+.program-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:36px;
 }
 
-.block{
-  border-top:4px solid var(--blue);
-  padding:28px;
-  background:white;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  transition:.3s;
+.program-block{
+  background:var(--white);
+  border-top:5px solid var(--blue);
+  padding:32px;
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  transition:.35s ease;
 }
 
-.block:hover{
-  transform:translateY(-6px);
+.program-block:hover{
+  transform:translateY(-8px);
 }
 
-.block h3{
-  font-size:20px;
-  margin-bottom:12px;
+.program-block h3{
+  font-size:22px;
+  margin-bottom:14px;
 }
 
-.block p{
+.program-block p{
   font-size:15px;
-  line-height:1.6;
+  line-height:1.7;
   color:#333;
 }
 
+/* ================= VALEURS ================= */
+.values{
+  background:var(--gray);
+}
+
+.values-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
+}
+
+.value{
+  padding:26px;
+  border-left:4px solid var(--red);
+}
+
+.value h4{
+  margin-bottom:8px;
+}
+
+/* ================= FOOTER ================= */
 footer{
   background:#f4f4f4;
   padding:40px;
   text-align:center;
   font-size:13px;
+  color:#555;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 @media(max-width:900px){
   nav ul{display:none;}
   .hero h1{font-size:34px;}
@@ -183,7 +216,9 @@ footer{
   </ul>
 
   <div class="tricolor">
-    <span class="blue"></span><span class="white"></span><span class="red"></span>
+    <span class="blue"></span>
+    <span class="white"></span>
+    <span class="red"></span>
   </div>
 </nav>
 
@@ -192,75 +227,97 @@ footer{
   <div class="hero">
     <h1>Le cap républicain</h1>
     <p>
-      Autorité sans haine. Justice sans faiblesse.
-      Une République qui protège et rassemble.
+      Autorité sans haine. Justice sans faiblesse.  
+      Une République forte qui protège, rassemble et prépare l’avenir.
     </p>
   </div>
 </header>
 
 <!-- PROGRAMME -->
 <section>
-  <h2 class="section-title">Nos priorités nationales</h2>
+  <div class="container">
+    <h2 class="section-title">Nos priorités nationales</h2>
+    <p class="section-subtitle">
+      Voie Républicaine propose une ligne claire : restaurer l’autorité de l’État,
+      garantir la justice pour tous et redonner un avenir solide à la France.
+    </p>
 
-  <div class="blocks">
+    <div class="program-grid">
 
-    <div class="block">
-      <h3>⚖️ Justice & Autorité</h3>
-      <p>
-        Une loi claire, appliquée réellement.
-        Protection des victimes, sanctions crédibles,
-        fin du sentiment d’impunité.
-      </p>
+      <div class="program-block">
+        <h3>⚖️ Justice & Autorité</h3>
+        <p>
+          La loi doit être la même pour tous, appliquée réellement.
+          La République protège les victimes, sanctionne les coupables
+          et met fin au sentiment d’impunité.
+        </p>
+      </div>
+
+      <div class="program-block">
+        <h3>🛡️ Sécurité républicaine</h3>
+        <p>
+          La sécurité est un droit fondamental.
+          Présence de l’État sur tout le territoire,
+          forces de l’ordre respectées et responsables.
+        </p>
+      </div>
+
+      <div class="program-block">
+        <h3>💼 Travail & mérite</h3>
+        <p>
+          Le travail doit toujours rapporter plus que l’inaction.
+          Valorisation de l’effort, fin des abus,
+          dignité retrouvée par l’emploi.
+        </p>
+      </div>
+
+      <div class="program-block">
+        <h3>🌍 Immigration maîtrisée</h3>
+        <p>
+          Humanité sans naïveté.
+          Intégration par la langue, le travail et le respect
+          des lois de la République.
+        </p>
+      </div>
+
+      <div class="program-block">
+        <h3>🏫 Éducation & transmission</h3>
+        <p>
+          Exigence, respect, orientation réelle.
+          L’école transmet des savoirs,
+          des valeurs et prépare à la vie.
+        </p>
+      </div>
+
+      <div class="program-block">
+        <h3>🚀 Avenir & souveraineté</h3>
+        <p>
+          Industrie, innovation, indépendance stratégique.
+          Une France qui décide pour elle-même
+          et prépare les générations futures.
+        </p>
+      </div>
+
     </div>
+  </div>
+</section>
 
-    <div class="block">
-      <h3>🛡️ Sécurité</h3>
-      <p>
-        Présence de l’État partout.
-        Police respectée et responsable.
-        La sécurité est un droit fondamental.
-      </p>
+<!-- VALEURS -->
+<section class="values">
+  <div class="container">
+    <h2 class="section-title">L’ADN de Voie Républicaine</h2>
+
+    <div class="values-list">
+      <div class="value"><h4>Ordre</h4><p>Sans autorité, pas de liberté.</p></div>
+      <div class="value"><h4>Justice</h4><p>Même loi pour tous.</p></div>
+      <div class="value"><h4>Travail</h4><p>Le mérite avant l’assistanat.</p></div>
+      <div class="value"><h4>Unité</h4><p>Une République indivisible.</p></div>
     </div>
-
-    <div class="block">
-      <h3>💼 Travail & Mérite</h3>
-      <p>
-        Le travail doit toujours payer.
-        Valorisation de l’effort, lutte contre l’assistanat,
-        dignité par l’emploi.
-      </p>
-    </div>
-
-    <div class="block">
-      <h3>🌍 Immigration maîtrisée</h3>
-      <p>
-        Humanité sans naïveté.
-        Intégration par le travail, la langue et le respect
-        des lois de la République.
-      </p>
-    </div>
-
-    <div class="block">
-      <h3>🏫 Éducation & Transmission</h3>
-      <p>
-        Exigence, respect et orientation réelle.
-        L’école prépare à la vie, pas à l’échec.
-      </p>
-    </div>
-
-    <div class="block">
-      <h3>🚀 Avenir & Souveraineté</h3>
-      <p>
-        Industrie, innovation, indépendance stratégique.
-        Une France qui décide pour elle-même.
-      </p>
-    </div>
-
   </div>
 </section>
 
 <footer>
-  © 2026 — Voie Républicaine
+  © 2026 — Voie Républicaine · Programme national
 </footer>
 
 <script>
@@ -269,16 +326,19 @@ const nav = document.getElementById("navbar");
 
 window.addEventListener("scroll",()=>{
   const current = window.pageYOffset;
+
   if(current > lastScroll && current > 100){
     nav.classList.add("hidden");
   }else{
     nav.classList.remove("hidden");
   }
+
   if(current > 50){
     nav.classList.add("scrolled");
   }else{
     nav.classList.remove("scrolled");
   }
+
   lastScroll = current;
 });
 </script>
